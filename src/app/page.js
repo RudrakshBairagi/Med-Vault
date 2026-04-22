@@ -8,6 +8,10 @@ export default function Home() {
   const { t } = useLanguage();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  // Medication Tracker State
+  const [med1Taken, setMed1Taken] = useState(true);
+  const [med2Taken, setMed2Taken] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,38 +92,45 @@ export default function Home() {
         <section className="space-y-4">
           <div className="flex justify-between items-end">
             <h2 className="text-[1.125rem] font-medium text-on-surface">{t('h_med_tracker')}</h2>
-            <button className="text-sm font-bold text-primary">{t('h_view_all')}</button>
+            <Link href="/tracker" className="text-sm font-bold text-primary hover:opacity-80 transition-opacity">{t('h_view_all')}</Link>
           </div>
           <div className="space-y-3">
             {/* Med 1 */}
-            <div className="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(26,28,23,0.02)] flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className={`rounded-xl p-4 shadow-[0_4px_20px_rgba(26,28,23,0.02)] flex items-center justify-between transition-colors ${med1Taken ? 'bg-surface-container-lowest/60' : 'bg-surface-container-lowest'}`}>
+              <div className={`flex items-center gap-4 transition-opacity ${med1Taken ? 'opacity-60' : 'opacity-100'}`}>
                 <div className="bg-primary/10 p-2 rounded-full">
                   <span className="material-symbols-outlined text-primary">medication</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-on-surface">{t('h_med1_name')}</h3>
+                  <h3 className={`font-bold transition-all ${med1Taken ? 'text-on-surface-variant line-through' : 'text-on-surface'}`}>{t('h_med1_name')}</h3>
                   <p className="text-sm text-on-surface-variant">{t('h_med1_desc')}</p>
                 </div>
               </div>
-              <div className="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center bg-primary text-on-primary">
-                <span className="material-symbols-outlined text-[14px]">check</span>
-              </div>
+              <button 
+                onClick={() => setMed1Taken(!med1Taken)}
+                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${med1Taken ? 'border-primary bg-primary text-on-primary' : 'border-outline-variant bg-transparent hover:border-primary'}`}
+              >
+                {med1Taken && <span className="material-symbols-outlined text-[14px]">check</span>}
+              </button>
             </div>
 
             {/* Med 2 */}
-            <div className="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(26,28,23,0.02)] flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className={`rounded-xl p-4 shadow-[0_4px_20px_rgba(26,28,23,0.02)] flex items-center justify-between transition-colors ${med2Taken ? 'bg-surface-container-lowest/60' : 'bg-surface-container-lowest'}`}>
+              <div className={`flex items-center gap-4 transition-opacity ${med2Taken ? 'opacity-60' : 'opacity-100'}`}>
                 <div className="bg-secondary-container/20 p-2 rounded-full">
                   <span className="material-symbols-outlined text-secondary">medication_liquid</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-on-surface">{t('h_med2_name')}</h3>
+                  <h3 className={`font-bold transition-all ${med2Taken ? 'text-on-surface-variant line-through' : 'text-on-surface'}`}>{t('h_med2_name')}</h3>
                   <p className="text-sm text-on-surface-variant">{t('h_med2_desc')}</p>
                 </div>
               </div>
-              <div className="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center">
-              </div>
+              <button 
+                onClick={() => setMed2Taken(!med2Taken)}
+                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${med2Taken ? 'border-primary bg-primary text-on-primary' : 'border-outline-variant bg-transparent hover:border-primary'}`}
+              >
+                {med2Taken && <span className="material-symbols-outlined text-[14px]">check</span>}
+              </button>
             </div>
           </div>
         </section>
@@ -172,10 +183,10 @@ export default function Home() {
           <span className="material-symbols-outlined text-2xl mb-1">folder_open</span>
           <span>{t('nav_records')}</span>
         </Link>
-        <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="#">
-          <span className="material-symbols-outlined text-2xl mb-1">event</span>
-          <span>{t('nav_visits')}</span>
-        </a>
+        <Link className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="/tracker">
+          <span className="material-symbols-outlined text-2xl mb-1">event_note</span>
+          <span>Tracker</span>
+        </Link>
         <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="#">
           <span className="material-symbols-outlined text-2xl mb-1">vital_signs</span>
           <span>{t('nav_health')}</span>
