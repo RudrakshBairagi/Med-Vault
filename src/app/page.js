@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <>
@@ -42,7 +44,7 @@ export default function Home() {
           </button>
 
           {/* View Vault Tile */}
-          <button className="bg-primary-container rounded-xl p-6 flex flex-col justify-between items-start aspect-square relative overflow-hidden group hover:opacity-90 transition-opacity">
+          <Link href="/vault" className="bg-primary-container rounded-xl p-6 flex flex-col justify-between items-start aspect-square relative overflow-hidden group hover:opacity-90 transition-opacity block w-full text-left">
             <div className="bg-surface/20 p-3 rounded-full mb-4">
               <span className="material-symbols-outlined text-on-primary-container text-3xl">folder_open</span>
             </div>
@@ -54,7 +56,7 @@ export default function Home() {
             <svg className="absolute bottom-[-10%] left-[-10%] w-[100%] h-[100%] text-white/5 -z-0 pointer-events-none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path d="M37.8,-63.9C52.7,-53.4,71.2,-48.5,82.4,-36.8C93.6,-25.1,97.5,-6.6,92.5,9.7C87.5,25.9,73.6,40,60.1,51.8C46.6,63.6,33.5,73.1,18.5,77.5C3.6,81.9,-13.2,81.2,-27.1,75.1C-41.1,69,-52.1,57.5,-63.2,44.9C-74.3,32.3,-85.4,18.7,-88.4,3.7C-91.5,-11.3,-86.5,-27.7,-76.3,-40.5C-66.2,-53.3,-50.9,-62.5,-35.8,-72.6C-20.6,-82.7,-5.7,-93.8,6.8,-92.4C19.3,-91.1,37.8,-63.9,37.8,-63.9Z" fill="currentColor" transform="translate(100 100)"></path>
             </svg>
-          </button>
+          </Link>
         </section>
 
         {/* Medicine Tracker */}
@@ -141,7 +143,7 @@ export default function Home() {
         </a>
 
         {/* Inactive Tabs */}
-        <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="#">
+        <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="/vault">
           <span className="material-symbols-outlined text-2xl mb-1">folder_open</span>
           <span>Records</span>
         </a>
@@ -149,10 +151,10 @@ export default function Home() {
           <span className="material-symbols-outlined text-2xl mb-1">event</span>
           <span>Visits</span>
         </a>
-        <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="#">
-          <span className="material-symbols-outlined text-2xl mb-1">vital_signs</span>
-          <span>Health</span>
-        </a>
+        <Link className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="/profile">
+          <span className="material-symbols-outlined text-2xl mb-1">person</span>
+          <span>Profile</span>
+        </Link>
       </nav>
     </>
   );
