@@ -1,4 +1,5 @@
 import "./globals.css";
+import { LanguageProvider } from "../context/LanguageContext";
 
 export const metadata = {
   title: "Med-Vault - Home",
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="bg-surface text-on-surface min-h-screen pb-32">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
