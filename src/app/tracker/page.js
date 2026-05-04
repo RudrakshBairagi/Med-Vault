@@ -165,10 +165,10 @@ export default function Tracker() {
         </Link>
 
         {/* Inactive Tab: Health */}
-        <a className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="#">
+        <Link className="flex flex-col items-center justify-center text-[#1a1c17]/40 group hover:text-primary transition-colors" href="/health">
           <span className="material-symbols-outlined text-2xl mb-1">vital_signs</span>
           <span>{t('nav_health')}</span>
-        </a>
+        </Link>
       </nav>
     </div>
   );
